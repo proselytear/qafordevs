@@ -4,39 +4,33 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.proselyte.qafordevs.dto.DeveloperDto;
 import net.proselyte.qafordevs.entity.DeveloperEntity;
 import net.proselyte.qafordevs.entity.Status;
-import net.proselyte.qafordevs.exception.DeveloperNotFoundException;
-import net.proselyte.qafordevs.exception.DeveloperWithDuplicateEmailException;
 import net.proselyte.qafordevs.repository.DeveloperRepository;
-import net.proselyte.qafordevs.service.DeveloperService;
 import net.proselyte.qafordevs.util.DataUtils;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
+@Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ItDeveloperRestControllerV1Tests {
+public class ItDeveloperRestControllerV1Tests extends AbstractRestControllerBaseTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -99,9 +93,10 @@ public class ItDeveloperRestControllerV1Tests {
     public void givenDeveloperDto_whenUpdateDeveloper_thenSuccessResponse() throws Exception {
         //given
         String updatedEmail = "updated@mail.com";
-        DeveloperEntity entity = DataUtils.getJohnDoePersisted();
+        DeveloperEntity entity = DataUtils.getJohnDoeTransient();
         developerRepository.save(entity);
         DeveloperDto dto = DataUtils.getJohnDoeDtoPersisted();
+        dto.setId(entity.getId());
         dto.setEmail(updatedEmail);
         //when
         ResultActions result = mockMvc.perform(put("/api/v1/developers")
