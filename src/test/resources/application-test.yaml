@@ -1,11 +1,6 @@
-server:
-  port: 8787
-
 spring:
-  application:
-    name: "qafordevs"
   datasource:
-    url: jdbc:postgresql://localhost:5432/qafordevs
+    url: jdbc:postgresql://localhost:5432/qafordevs_test
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
