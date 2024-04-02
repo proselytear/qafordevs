@@ -1,0 +1,10 @@
+server:
+  port: 8787
+
+spring:
+  application:
+    name: "qafordevs"
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
