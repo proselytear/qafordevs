@@ -1,3 +1,17 @@
+# Учебный REST API для курса "Тестирование глазами разработчика".
+
+## Технологии:
+* Java 21
+* Spring Boot 3
+* Spring Web
+* Spring Data
+* Lombok
+* JUnit
+* Mockito
+* PostgreSQL
+* Embedded DB H2 
+* Testcontainers
+
 # Ветка: STEP 1
 
 ## Описание: 
