@@ -3,11 +3,9 @@ package net.proselyte.qafordevs.it;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
 
 public abstract class AbstractRestControllerBaseTest {
 
-    @Container
     static final PostgreSQLContainer POSTGRE_SQL_CONTAINER;
 
     static {
