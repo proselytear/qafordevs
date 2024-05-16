@@ -8,7 +8,6 @@ import org.testcontainers.junit.jupiter.Container;
 
 public abstract class AbstractRestControllerBaseTest {
 
-    @Container
     static final PostgreSQLContainer POSTGRE_SQL_CONTAINER;
 
     static {

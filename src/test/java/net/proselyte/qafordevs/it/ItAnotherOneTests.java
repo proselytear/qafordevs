@@ -10,7 +10,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-@Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ItAnotherOneTests extends AbstractRestControllerBaseTest {
     private static final Logger log = LoggerFactory.getLogger("abobus");
